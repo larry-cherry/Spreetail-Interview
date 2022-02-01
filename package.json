@@ -8,6 +8,7 @@
   "scripts": {
     "start": "ts-node index.ts",
     "dev": "npx tsc --watch index.ts",
+    "build": "npx tsc index.ts",
     "test": "jest"
   },
   "dependencies": {
