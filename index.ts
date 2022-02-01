@@ -41,6 +41,7 @@ export function inputParser(input: string) {
   }
   const [cmd, key] = inputArray;
   const val = inputArray.slice(2, inputArray.length).join(' ');
+  const allMemeberKeys = Object.keys(multiValueDictionary);
   switch(cmd){
     case COMMANDS.ADD:
       console.log('adding')
@@ -72,15 +73,19 @@ export function inputParser(input: string) {
       break;
     case COMMANDS.ALLMEMBERS:
       let allmemebers: string[] = [];
-      const allMemeberKeys = Object.keys(multiValueDictionary);
+      // const allMemeberKeys = Object.keys(multiValueDictionary);
       for(const memberKey of allMemeberKeys){
         multiValueDictionary[memberKey].forEach(memberVal => {
           console.log(memberVal)
         })
       }
-       
-
       break;
+    case COMMANDS.KEYEXISTS:
+      if(key in multiValueDictionary){
+        console.log(true);
+      } else {
+        console.log(false);
+      }
     case COMMANDS.REMOVE:
       if(key in multiValueDictionary){
         const newMembers = multiValueDictionary[key].filter(member => member != val);
@@ -97,7 +102,15 @@ export function inputParser(input: string) {
       } else {
         throw new Error(`${key} does not exist`);
       }
-
+      break;
+    case COMMANDS.ITEMS:
+      for(const memberKey of allMemeberKeys){
+        console.log('key', memberKey);
+        multiValueDictionary[memberKey].forEach(memberVal => {
+          console.log(memberVal)
+        })
+      }
+      break;
     case COMMANDS.EXIT:
       process.exit(0);
     case COMMANDS.CLEAR:
