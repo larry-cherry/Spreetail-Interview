@@ -169,6 +169,9 @@ class Spreetail {
         i++;
       }
     }
+    if(members.length === 0){
+      this.printToConsole('(empty set)')
+    }
     return members;
   }
   items(): void{
@@ -179,6 +182,9 @@ class Spreetail {
         this.printToConsole(`${i}) ${key}: ${member}`);
         i++;
       }
+    }
+    if(keys.length === 0){
+      this.printToConsole('(empty set)')
     }
   }
   printToConsole(msg: any){
