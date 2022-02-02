@@ -1,4 +1,3 @@
-const exp = require('constants');
 const {Spreetail} = require('../index.js');
 
 describe('Running test for Spreetail class', () => {
