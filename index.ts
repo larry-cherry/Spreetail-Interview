@@ -82,22 +82,29 @@ class Spreetail {
     if(!this.keyexists(key)){
       this.multiValueDictionary[key] = new Set();
       this.multiValueDictionary[key].add(member);
+      this.printToConsole('Added')
     } else {
       if(!this.membersexists(key, member)){
         this.multiValueDictionary[key].add(member);
+        this.printToConsole('Added')
       } else {
         this.printToConsole('ERROR, member already exists for key')
       }
     }
   }
   remove(key: string, member: string){
-    if(this.membersexists(key, member)){
-      this.multiValueDictionary[key].delete(member);
-      if(this.multiValueDictionary[key].size === 0){
+    if(this.keyexists(key)){
+      if(this.membersexists(key, member)){
+        this.multiValueDictionary[key].delete(member);
+        this.printToConsole('Removed');
+      } else {
+        this.printToConsole('ERROR, member does not exist');
+      } 
+      if(this.multiValueDictionary[key].size == 0){
         this.removeall(key);
       }
     } else {
-      this.printToConsole('ERROR, member does not exist');
+      this.printToConsole('ERROR, key does not exist');
     }
   }
   members(key: string){
@@ -115,11 +122,12 @@ class Spreetail {
   }
   clear(){
     this.multiValueDictionary = {}
-    return this.multiValueDictionary
+    this.printToConsole('Cleared');
   }
   removeall(key: string){
     if(this.keyexists(key)){
       delete this.multiValueDictionary[key];
+      this.printToConsole('Removed')
     } else {
       this.printToConsole('ERROR, key does not exist')
     }
@@ -132,6 +140,7 @@ class Spreetail {
       let i = 1;
       for(const key of keys){
         this.printToConsole(`${i}) ${key}`);
+        i++;
       }
     }
     return keys
