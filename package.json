@@ -7,9 +7,9 @@
   "license": "MIT",
   "scripts": {
     "start": "ts-node index.ts",
-    "dev": "npx tsc --watch index.ts",
-    "build": "npx tsc index.ts",
-    "test": "jest"
+    "dev": "npx tsc --watch",
+    "build": "npx tsc",
+    "test": "yarn build && npx jest"
   },
   "dependencies": {
     "ts-node": "^10.4.0",
